@@ -16,6 +16,7 @@
         public string DatabaseName { get; set; }
         public object Parameters { get; set; }
         public string ProcedureName { get; set; }
+        public string Query => string.IsNullOrEmpty(DatabaseName) ? ProcedureName : $"{DatabaseName}..{ProcedureName}";
         #endregion
     }
 }
