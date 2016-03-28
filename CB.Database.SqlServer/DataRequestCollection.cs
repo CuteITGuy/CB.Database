@@ -19,6 +19,20 @@ namespace CB.Database.SqlServer
 
 
         #region Methods
+        public static DataRequestCollection Create(string databaseName, string procedureName, object parameters,
+            QueryStrategy queryStrategy = QueryStrategy.Sequential)
+        {
+            var request = new DataRequest(databaseName, procedureName, parameters);
+            var collection = new DataRequestCollection { QueryStrategy = queryStrategy };
+            collection.Add(request);
+            return collection;
+        }
+
+        public void Add(string databaseName, string procedureName, object parameters)
+        {
+            Add(new DataRequest(databaseName, procedureName, parameters));
+        }
+
         public void Add(DataRequest item)
         {
             _collection.Add(item);
